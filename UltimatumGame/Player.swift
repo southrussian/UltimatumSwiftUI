@@ -13,7 +13,7 @@ public class Player {
     var name: String
     var acceptanceThreshold: Double
     
-    init(name: String, strategy: Double, acceptanceThreshold: Double) {
+    init(name: String) {
         self.name = name
         self.strategy = 0.5
         self.acceptanceThreshold = 0.5
@@ -27,7 +27,7 @@ public class Player {
         return offer >= self.acceptanceThreshold
     }
     
-    func updateStrategy(history: [(Double, Double, Bool)]) {
+    func updateStrategy(history: [(Int, Double, Bool)]) {
         let acceptedOffers = history.filter { $0.2 }.map { $0.1 }
         
         if acceptedOffers.count < history.count / 2 {
@@ -37,7 +37,7 @@ public class Player {
         }
         
         if !acceptedOffers.isEmpty {
-            acceptanceThreshold = acceptedOffers.reduce(0, +) / Double(acceptedOffers.count)
+            acceptanceThreshold = (acceptedOffers.reduce(0, +) / Double(acceptedOffers.count))
         } else {
             acceptanceThreshold = max(0, acceptanceThreshold - 0.05)
         }
