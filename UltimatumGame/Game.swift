@@ -32,7 +32,7 @@ public class Game {
     func playGame() {
         print("The game has started! Rounds: \(self.rounds)")
         for roundNumber in 1...self.rounds + 1 {
-            var (offer, accepted) = self.playRound()
+            let (offer, accepted) = self.playRound()
             if accepted {
                 print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name).")
             } else {
