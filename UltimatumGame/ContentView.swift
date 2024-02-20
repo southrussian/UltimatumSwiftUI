@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    var game = Game()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                
+            Text("Hello")
+                .onAppear(perform: {
+                    game.playGame()
+                })
         }
         .padding()
     }
