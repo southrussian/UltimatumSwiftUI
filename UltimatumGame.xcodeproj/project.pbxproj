@@ -14,6 +14,7 @@
 		58E890172B81148300A86CD0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E890162B81148300A86CD0 /* Player.swift */; };
 		58E890192B814B0700A86CD0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E890182B814B0700A86CD0 /* Game.swift */; };
 		AC6362E72B84DE2500850BD9 /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6362E62B84DE2500850BD9 /* GA.swift */; };
+		AC6362E92B85217B00850BD9 /* SimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6362E82B85217B00850BD9 /* SimulationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		58E890162B81148300A86CD0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		58E890182B814B0700A86CD0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		AC6362E62B84DE2500850BD9 /* GA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
+		AC6362E82B85217B00850BD9 /* SimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +62,13 @@
 			children = (
 				58E890072B81145400A86CD0 /* UltimatumGameApp.swift */,
 				58E890092B81145400A86CD0 /* ContentView.swift */,
-				58E8900B2B81145600A86CD0 /* Assets.xcassets */,
-				58E890102B81145600A86CD0 /* UltimatumGame.entitlements */,
-				58E8900D2B81145600A86CD0 /* Preview Content */,
+				AC6362E82B85217B00850BD9 /* SimulationView.swift */,
 				58E890162B81148300A86CD0 /* Player.swift */,
 				58E890182B814B0700A86CD0 /* Game.swift */,
 				AC6362E62B84DE2500850BD9 /* GA.swift */,
+				58E8900B2B81145600A86CD0 /* Assets.xcassets */,
+				58E890102B81145600A86CD0 /* UltimatumGame.entitlements */,
+				58E8900D2B81145600A86CD0 /* Preview Content */,
 			);
 			path = UltimatumGame;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				58E8900A2B81145400A86CD0 /* ContentView.swift in Sources */,
 				58E890172B81148300A86CD0 /* Player.swift in Sources */,
 				58E890082B81145400A86CD0 /* UltimatumGameApp.swift in Sources */,
+				AC6362E92B85217B00850BD9 /* SimulationView.swift in Sources */,
 				AC6362E72B84DE2500850BD9 /* GA.swift in Sources */,
 				58E890192B814B0700A86CD0 /* Game.swift in Sources */,
 			);

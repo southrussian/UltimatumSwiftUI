@@ -20,7 +20,7 @@ public class Game {
         self.history = []
         self.player1 = Player(name: "Player1")
         self.player2 = Player(name: "Player2")
-        self.geneticAlgorithm = GeneticAlgorithm(population: [self.player1], mutationRate: 0.01, crossoverRate: 0.7)
+        self.geneticAlgorithm = GeneticAlgorithm(population: Array(repeating: self.player1, count: 100), mutationRate: 0.2, crossoverRate: 0.7)
     }
     
     func playRound() -> (Double, Bool) {
@@ -33,18 +33,16 @@ public class Game {
     
     func playGame() {
         print("The game has started! Rounds: \(self.rounds)")
-
         for roundNumber in 1...self.rounds {
-           let (offer, accepted) = self.playRound()
-           if accepted {
-              print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name).")
-           } else {
-              print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) declined \(self.player2.name).")
-           }
+            let (offer, accepted) = self.playRound()
+            if accepted {
+                print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name).")
+            }  else {
+                print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) declined \(self.player2.name).")
+            }
+            self.geneticAlgorithm.evolve()
+            self.player1 = self.geneticAlgorithm.population[0]
         }
-
-        self.geneticAlgorithm.evolve()
-        self.player1 = self.geneticAlgorithm.population[0]
         print("Game over")
     }
 }

@@ -16,8 +16,8 @@ public class Player {
     
     init(name: String) {
         self.name = name
-        self.strategy = 0.5
-        self.acceptanceThreshold = 0.5
+        self.strategy = 0.25
+        self.acceptanceThreshold = 0.35
         self.fitness = 0.0
     }
     
@@ -34,5 +34,5 @@ public class Player {
             self.fitness += 1 - offer
         }
     }
-
+    
 }
