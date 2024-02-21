@@ -7,25 +7,26 @@
 
 import Foundation
 
-public class Game {
+public class Game: ObservableObject {
     
-    var rounds: Int
-    var history: [(Int, Double, Bool)]
-    var player1: Player
-    var player2: Player
+    @Published var rounds: Int
+    @Published var history: [(Int, Double, Bool)]
+    @Published var player1: Player
+    @Published var player2: Player
+    @Published var message: String
     
     init(rounds: Int = 10) {
         self.rounds = rounds
         self.history = []
         self.player1 = Player(name: "Player1")
         self.player2 = Player(name: "Player2")
+        self.message = ""
     }
     
     func playRound() -> (Double, Bool) {
         let offer = self.player1.make_offer()
         let accepted = self.player2.decide(offer: offer)
         self.history.append((self.rounds, offer, accepted))
-        
         return (offer, accepted)
     }
     
@@ -34,11 +35,20 @@ public class Game {
         for roundNumber in 1...self.rounds {
             let (offer, accepted) = self.playRound()
             if accepted {
+                self.message = "Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name)."
                 print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name).")
             } else {
+                self.message = "Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) declined \(self.player2.name)."
                 print("Round \(roundNumber): Offer \(offer * 100)% from \(self.player1.name) declined \(self.player2.name).")
             }
         }
-        print("Game over")
+        print("\nGame over")
+        
+//        for (roundNumber, (rounds, offer, accepted)) in Game().history.enumerated() {
+//            if accepted {
+//                print("Раунд \(roundNumber + 1): Соглашение достигнуто на \(roundNumber + 1) ходу.")
+//                break
+//            }
+//        }
     }
 }
