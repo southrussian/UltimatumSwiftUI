@@ -8,17 +8,19 @@
 import Foundation
 
 public class Player {
-    
+
     var strategy: Double
     var name: String
     var acceptanceThreshold: Double
     var fitness: Double
+    var id: UUID
     
     init(name: String) {
         self.name = name
         self.strategy = 0.25
         self.acceptanceThreshold = 0.35
         self.fitness = 0.0
+        self.id = UUID()
     }
     
     func make_offer() -> Double {
