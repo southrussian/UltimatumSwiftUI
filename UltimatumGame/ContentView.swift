@@ -31,10 +31,7 @@ struct ContentView: View {
             case .ga_settings:
                 EmptyView()
             case .simulation:
-                EmptyView()
-//                    .onAppear(perform: {
-//                        game.playGame()
-//                    })
+                SimulationView()
             case .history:
                 HistoryView()
             case nil:

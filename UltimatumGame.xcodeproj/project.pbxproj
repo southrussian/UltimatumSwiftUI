@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		587C0A2D2B860802002BDA8C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587C0A2C2B860802002BDA8C /* HistoryView.swift */; };
+		587C0A2F2B862E0B002BDA8C /* SimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587C0A2E2B862E0B002BDA8C /* SimulationView.swift */; };
 		58E890082B81145400A86CD0 /* UltimatumGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E890072B81145400A86CD0 /* UltimatumGameApp.swift */; };
 		58E8900A2B81145400A86CD0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E890092B81145400A86CD0 /* ContentView.swift */; };
 		58E8900C2B81145600A86CD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58E8900B2B81145600A86CD0 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		587C0A2C2B860802002BDA8C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		587C0A2E2B862E0B002BDA8C /* SimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationView.swift; sourceTree = "<group>"; };
 		58E890042B81145400A86CD0 /* UltimatumGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UltimatumGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E890072B81145400A86CD0 /* UltimatumGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltimatumGameApp.swift; sourceTree = "<group>"; };
 		58E890092B81145400A86CD0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				587C0A2C2B860802002BDA8C /* HistoryView.swift */,
+				587C0A2E2B862E0B002BDA8C /* SimulationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				58E8900A2B81145400A86CD0 /* ContentView.swift in Sources */,
 				58E890172B81148300A86CD0 /* Player.swift in Sources */,
 				587C0A2D2B860802002BDA8C /* HistoryView.swift in Sources */,
+				587C0A2F2B862E0B002BDA8C /* SimulationView.swift in Sources */,
 				58E890082B81145400A86CD0 /* UltimatumGameApp.swift in Sources */,
 				58E890192B814B0700A86CD0 /* Game.swift in Sources */,
 			);
