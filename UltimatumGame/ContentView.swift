@@ -17,6 +17,7 @@ enum menu: String, Identifiable, CaseIterable {
 
 struct ContentView: View {
     @State var current_page: menu? = nil
+    @EnvironmentObject var gameEnv: Game
     var game = Game()
     
     var body: some View {
@@ -27,7 +28,7 @@ struct ContentView: View {
         } detail: {
             switch current_page {
             case .game_settings:
-                EmptyView()
+                SettingsView()
             case .ga_settings:
                 EmptyView()
             case .simulation:

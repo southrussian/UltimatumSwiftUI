@@ -25,8 +25,7 @@ public class GeneticAlgorithm {
     }
     
     func crossover(parent1: Player, parent2: Player) -> Player {
-        let child = Player(name: "Child")
-        child.strategy = (parent1.strategy + parent2.strategy) / 2
+        let child = Player(strategy: (parent1.strategy + parent2.strategy) / 2, acceptanceThreshold: 0.35)
         return child
     }
     
@@ -58,4 +57,5 @@ public class GeneticAlgorithm {
         
         population = newPopulation
     }
+
 }

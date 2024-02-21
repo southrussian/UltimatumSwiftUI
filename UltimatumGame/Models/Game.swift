@@ -16,75 +16,75 @@ public class Game: ObservableObject {
     @Published var geneticAlgorithm: GeneticAlgorithm
     @Published var nash: Double?
     @Published var nashHistory: [Double?]
+    @Published var nashHistoryStruct: [NashHistory] = []
     
-    init(rounds: Int = 10) {
+    init(rounds: Int = 50) {
         self.rounds = rounds
         self.history = []
-        self.player1 = Player(name: "Player 1")
-        self.player2 = Player(name: "Player 2")
+        self.player1 = Player(strategy: 0.9, acceptanceThreshold: 0.35)
+        self.player2 = Player(strategy: 0.9, acceptanceThreshold: 0.35)
         var players = [Player]()
         for _ in 1...100 {
-            let player = Player(name: "Player 1")
+            let player = Player(strategy: 0.9, acceptanceThreshold: 0.35)
             player.strategy = self.player1.strategy + Double.random(in: -0.1...0.1)
             players.append(player)
         }
-        self.geneticAlgorithm = GeneticAlgorithm(population: players, mutationRate: 0.75, crossoverRate: 0.75)
+        self.geneticAlgorithm = GeneticAlgorithm(population: players, mutationRate: 0.8, crossoverRate: 0.8)
         self.nashHistory = []
     }
     
     func playRound() -> (Double, Bool) {
         let offer = self.player1.make_offer()
         let accepted = self.player2.decide(offer: offer)
-        self.history.append((self.rounds, offer, accepted))
-        self.player1.updateFitness(offer: offer, accepted: accepted)
         return (offer, accepted)
     }
     
-//    func clearGame() {
-//        self.history.removeAll()
-//        self.rounds = 0
-//        self.nash = 0
-//    }
-//    
-    func playGame() {
-        print("The game has started! Rounds: \(self.rounds)")
-        var roundNumber = 0
-    
-        var dropout = [Player]()
-        while roundNumber != self.rounds {
-            self.geneticAlgorithm.evolve()
-            for individual in self.geneticAlgorithm.population {
-                self.player1 = individual
-                let (offer, accepted) = self.playRound()
-                if accepted {
-                    if nash != nil {
-                        if player1.strategy < self.nash! {
-                            self.nash = player1.strategy
-                            self.nashHistory.append(self.nash)
-                        }
-                    } else {
-                        self.nash = player1.strategy
-                        self.nashHistory.append(self.nash)
-                    }
-                    print("Round \(roundNumber + 1): Offer \(offer * 100)% from \(self.player1.name) accepted \(self.player2.name).")
-                }  else {
-                    dropout.append(individual)
-                    print("Round \(roundNumber + 1): Offer \(offer * 100)% from \(self.player1.name) declined \(self.player2.name).")
-                }
-            }
-            self.geneticAlgorithm.population = self.geneticAlgorithm.population.filter {player in !dropout.contains(where: { $0.id == player.id })}
-            dropout.removeAll()
-            roundNumber += 1
-        }
-        print("real rounds:", roundNumber)
-        print(nashHistory)
-        if nash != nil {
-            print("Game over, best found nash: [\(nash!), \(1-nash!)]")
-        } else {
-            print("Game over, nash not found")
+    func evaluate(round: Int) {
+        for individual in self.geneticAlgorithm.population {
+            self.player1 = individual
+            let (offer, accepted) = self.playRound()
+            self.history.append((round, offer, accepted))
         }
     }
-
+    
+    func playGame() {
+        var roundNumber = 0
+        while roundNumber != self.rounds {
+            self.geneticAlgorithm.evolve()
+            self.evaluate(round: roundNumber)
+            let accepted_values = self.history.filter { $0.0 == roundNumber && $0.2 == true }.map { $0.1 }.sorted()
+            let rejected_values = self.history.filter { $0.0 == roundNumber && $0.2 == false }.map { $0.1 }.sorted()
+            if !accepted_values.isEmpty {
+                let propoused_nash = accepted_values.first!
+                if self.nash == nil {
+                    self.nash = propoused_nash
+                    self.nashHistory.append(self.nash)
+                } else {
+                    if self.nash! > propoused_nash {
+                        self.nash = propoused_nash
+                        self.nashHistory.append(self.nash)
+                    }
+                }
+            }
+            let new_polycies = rejected_values[Int(Double(rejected_values.count) * 0.8)...] + accepted_values[..<Int(Double(accepted_values.count) * 0.8)]
+            var new_generation = [Player]()
+            for policy in new_polycies {
+                new_generation.append(Player(strategy: policy, acceptanceThreshold: 0.35))
+            }
+            self.geneticAlgorithm.population = new_generation
+            roundNumber += 1
+        }
+        
+        processNashHistory(nashHistoryArray: nashHistory)
+        print(nashHistoryStruct)
+    }
+    
+    func processNashHistory(nashHistoryArray: [Double?]) {
+            for (index, value) in nashHistoryArray.enumerated() {
+                let newItem = NashHistory(nashValue: value, index: index)
+                nashHistoryStruct.append(newItem)
+            }
+        }
 }
 
 //import Foundation

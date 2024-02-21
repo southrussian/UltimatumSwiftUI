@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct UltimatumGameApp: App {
+    @ObservedObject var game = Game()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(game)
         }
     }
 }

@@ -10,16 +10,12 @@ import Foundation
 public class Player {
 
     var strategy: Double
-    var name: String
     var acceptanceThreshold: Double
-    var fitness: Double
     var id: UUID
     
-    init(name: String) {
-        self.name = name
-        self.strategy = 0.25
-        self.acceptanceThreshold = 0.35
-        self.fitness = 0.0
+    init(strategy: Double, acceptanceThreshold: Double) {
+        self.strategy = strategy
+        self.acceptanceThreshold = acceptanceThreshold
         self.id = UUID()
     }
     
@@ -29,12 +25,6 @@ public class Player {
     
     func decide(offer: Double) -> Bool {
         return offer >= self.acceptanceThreshold
-    }
-    
-    func updateFitness(offer: Double, accepted: Bool) {
-        if accepted {
-            self.fitness += 1 - offer
-        }
     }
     
 }
