@@ -26,9 +26,9 @@ struct HistoryView: View {
             .padding(.top, 20)
         }
         .navigationTitle("History")
-        .onAppear {
-            self.game.playGame()
-        }
+//        .onAppear {
+//            self.game.playGame()
+//        }
     }
 }
 
