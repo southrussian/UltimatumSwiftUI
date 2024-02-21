@@ -13,22 +13,15 @@ struct HistoryView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
+            LazyVStack(alignment: .leading, spacing: 8) {
                 ForEach(game.history.indices, id: \.self) { index in
-                    Section {
-                        Text(self.game.history[index].2 ? "Round \(index + 1): Offer \(self.game.history[index].1 * 100)% from \(self.game.player1.name) accepted by \(self.game.player2.name)." : "Round \(index + 1): Offer \(self.game.history[index].1 * 100)% from \(self.game.player1.name) declined by \(self.game.player2.name).")
+                        Text(self.game.history[index].2 ? "Round \(index + 1): Offer \(self.game.history[index].1 * 100)% accepted." : "Round \(index + 1): Offer \(self.game.history[index].1 * 100)% declined.")
                             .lineLimit(nil)
-                        Divider()
-                    }
-                    .padding(.horizontal, 14)
                 }
             }
             .padding(.top, 20)
         }
         .navigationTitle("History")
-//        .onAppear {
-//            self.game.playGame()
-//        }
     }
 }
 
