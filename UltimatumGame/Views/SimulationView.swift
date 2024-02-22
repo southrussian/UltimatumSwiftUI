@@ -10,6 +10,7 @@ import Charts
 
 struct SimulationView: View {
     @EnvironmentObject var game: Game
+//    let nashHistory: [NashHistory]
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 8) {
@@ -18,16 +19,21 @@ struct SimulationView: View {
                 }
                 Divider()
                 Text("Nash table")
-                LazyHStack(spacing: 14) {
-                    
-                    Text("\(self.game.nash ?? 0.0)")
-                        .bold()
-                    Text("\(1.0 - (self.game.nash ?? 0.0))")
-                        .bold()
-                    Text("Count of true: \(self.countTrue())")
-                    Text("Count of false: \(self.countFalse())")
-                } // заменить на таблицу
+                    .bold()
+                VStack {
+                    LazyHStack(spacing: 14) {
+                        Text("\(self.game.nash ?? 0.0)")
+                        Text("\(1.0 - (self.game.nash ?? 0.0))")
+                    }
+                    LazyHStack(spacing: 14) {
+                        Text("Count of true: \(self.countTrue())")
+                        Text("Count of false: \(self.countFalse())")
+                    }
+                }
+                 // заменить на таблицу
                 Divider()
+                Text("Nash Values Dynamic Chart")
+                    .bold()
                 ChartView()
                     .padding(.top, 14)
             }
