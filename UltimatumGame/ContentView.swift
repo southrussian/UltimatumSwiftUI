@@ -30,7 +30,7 @@ struct ContentView: View {
             case .game_settings:
                 SettingsView()
             case .ga_settings:
-                EmptyView()
+                OptimizationView()
             case .simulation:
                 SimulationView()
             case .history:

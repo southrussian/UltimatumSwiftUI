@@ -43,6 +43,7 @@ struct OptimizationView: View {
 
         }
         .padding()
+        .navigationTitle("Optimization")
     }
 }
 

@@ -40,6 +40,7 @@ struct SettingsView: View {
             Divider().padding(.vertical)
         }
         .padding()
+        .navigationTitle("Settings")
     }
 }
 
