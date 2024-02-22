@@ -16,9 +16,9 @@ struct SettingsView: View {
             Text("Choose the amount of players")
             
             Picker(selection: $menuSelected, label: Text("Select:")) {
-                Text("Two Players").tag(1)
-                Text("Three Players").tag(2)
-                Text("N Players").tag(3)
+                Text("Two Players").tag(0)
+                Text("Three Players").tag(1)
+                Text("N Players").tag(2)
 
             }
             .frame(width: 250)
